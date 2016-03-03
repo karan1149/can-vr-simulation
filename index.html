@@ -5,6 +5,12 @@
     </head>
     <body onload = "OnSuccessfulLoad()">
       <a-scene id = "sceneElement">
+        <a-assets>
+          <a-entity id="container" position="0 2 -10" scale="0 0 0">
+            <a-animation attribute="scale" from="0 0 0" to="1 1 1" dur="10000" begin="breakApart"></a-animation>
+            <a-animation attribute="position" from="0 2 -10" to="0 -30 -10" dur="50000" begin="sink"></a-animation>
+          </a-entity>
+        </a-assets>
         <a-camera position = "0 5 0">
           <a-sky src="underwater.jpg"></a-sky>
           <a-entity sound="src:ocean.mp3; autoplay:true; loop:true; volume:0.5"></a-entity>
@@ -12,6 +18,8 @@
           <a-entity light="type: ambient; color: "></a-entity>
           <a-entity id="can" geometry="primitive:cylinder; radius:2; height:5" position="0 2 -10" rotation="-30 30 12" material="color:#9E9F9F; roughness:0.2; metalness: 0.7; src:url(label.jpg)">
             <a-animation id="float" attribute="position" from="0 2 -10" to="0 -2 -10" dur="10000"></a-animation>
+            <a-animation attribute="scale" to="0 0 0" begin="resize" dur="10000"></a-animation>
+          </a-entity>
       </a-scene>
     </body>
 </html>
