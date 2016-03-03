@@ -6,6 +6,10 @@
     <body onload = "OnSuccessfulLoad()">
       <a-scene id = "sceneElement">
         <a-camera position = "0 5 0">
+          <a-sky src="underwater.jpg"></a-sky>
+          <a-entity sound="src:ocean.mp3; autoplay:true; loop:true; volume:0.5"></a-entity>
+          <a-entity light="type: directional; intensity: 0.3; color: #fff" position="-1 2 1"></a-entity>
+          <a-entity light="type: ambient; color: "></a-entity>
       </a-scene>
     </body>
 </html>
