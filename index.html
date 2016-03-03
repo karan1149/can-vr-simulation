@@ -5,38 +5,6 @@
     </head>
     <body onload = "OnSuccessfulLoad()">
       <a-scene id = "sceneElement">
-        <script>
-          var entityElement = document.getElementById("container");
-          document.getElementById("sceneElement").appendChild(entityElement);
-          function OnSuccessfulLoad(){
-            var i;
-             for (i = 1; i < 10; i++) {
-                var r, x, z;
-                for (r = -10; r < 10; r++) {
-                   // Create our metal particles
-                   var particleElement = document.createElement("a-entity");
-                   particleElement.setAttribute("geometry", "primitive:sphere; radius:0.1");
-                   particleElement.setAttribute("material", "color:#cccccc; roughness:0.2; metalness:0.7");
-                   x = Math.PI * r * Math.cos(i);
-                   z = Math.PI * r * Math.sin(i);
-                   particleElement.setAttribute("position", x * 1.5 + " 2 " + z * 1.5);
-                   entityElement.appendChild(particleElement);
-                 }
-              }
-              setTimeout(function(){ShrinkCan()}, 5000)
-          }
-          function ShrinkCan(){
-            document.querySelector("#can").emit("resize");
-            EmitParticles();
-          }
-          function EmitParticles(){
-            entityElement.emit("breakApart")
-            setTimeout(function () { SinkParticles() }, 5000)
-          }
-          function SinkParticles(){
-            entityElement.emit("sink");
-          }
-        </script>
         <a-assets>
           <a-entity id="container" position="0 2 -10" scale="0 0 0">
             <a-animation attribute="scale" from="0 0 0" to="1 1 1" dur="10000" begin="breakApart"></a-animation>
@@ -53,5 +21,37 @@
             <a-animation attribute="scale" to="0 0 0" begin="resize" dur="10000"></a-animation>
           </a-entity>
       </a-scene>
+      <script>
+        var entityElement = document.getElementById("container");
+        document.getElementById("sceneElement").appendChild(entityElement);
+        function OnSuccessfulLoad(){
+          var i;
+           for (i = 1; i < 10; i++) {
+              var r, x, z;
+              for (r = -10; r < 10; r++) {
+                 // Create our metal particles
+                 var particleElement = document.createElement("a-entity");
+                 particleElement.setAttribute("geometry", "primitive:sphere; radius:0.1");
+                 particleElement.setAttribute("material", "color:#cccccc; roughness:0.2; metalness:0.7");
+                 x = Math.PI * r * Math.cos(i);
+                 z = Math.PI * r * Math.sin(i);
+                 particleElement.setAttribute("position", x * 1.5 + " 2 " + z * 1.5);
+                 entityElement.appendChild(particleElement);
+               }
+            }
+            setTimeout(function(){ShrinkCan()}, 5000)
+        }
+        function ShrinkCan(){
+          document.querySelector("#can").emit("resize");
+          EmitParticles();
+        }
+        function EmitParticles(){
+          entityElement.emit("breakApart")
+          setTimeout(function () { SinkParticles() }, 5000)
+        }
+        function SinkParticles(){
+          entityElement.emit("sink");
+        }
+      </script>
     </body>
 </html>
